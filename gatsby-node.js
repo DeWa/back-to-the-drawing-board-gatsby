@@ -38,12 +38,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postPage = path.resolve('src/templates/post.jsx');
+  const postPage = path.resolve('src/templates/post.tsx');
   const notePage = path.resolve('src/templates/note.tsx');
-  const tagPage = path.resolve('src/templates/tag.jsx');
-  const categoryPage = path.resolve('src/templates/category.jsx');
-  const listingPage = path.resolve('./src/templates/listing.jsx');
-  const landingPage = path.resolve('./src/templates/landing.jsx');
+  const tagPage = path.resolve('src/templates/tag.tsx');
+  const categoryPage = path.resolve('src/templates/category.tsx');
+  const listingPage = path.resolve('./src/templates/listing.tsx');
+  const indexPage = path.resolve('./src/pages/index.tsx');
 
   // Get a full list of markdown posts
   const postsMarkdownQueryResult = await graphql(`
@@ -130,10 +130,10 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   } else {
-    // Load the landing page instead
+    // Load the index page instead
     createPage({
       path: `/`,
-      component: landingPage,
+      component: indexPage,
     });
   }
 
