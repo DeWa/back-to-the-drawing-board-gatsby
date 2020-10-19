@@ -43,6 +43,7 @@
     "cli-glob": "^0.1.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
+    "eslint-config-react": "^1.1.7",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.4",
@@ -67,10 +68,10 @@
     "build:pp": "gatsby build --prefix-paths",
     "build:gh": "npm run clean && npm run build:pp && gh-pages -d public",
     "clean": "rm -rf public && rm -rf .cache",
-    "lint:js": "eslint --ext .js,.jsx .",
+    "lint:js": "eslint --ext .ts,.tsx .",
     "lint:md": "remark content/",
     "write-good": "write-good $(glob 'content/posts/**/*.md')",
-    "format:js": "prettier '**/*.{js,jsx}' --write",
+    "format:js": "prettier '**/*.{ts,tsx}' --write",
     "format:styles": "prettier '**/*.{css,scss}' --write"
   },
   "remarkConfig": {
