@@ -1,0 +1,26 @@
+.wrapper {
+  width: 600px;
+  min-height: 200px;
+  position: relative;
+  background: rgb(240, 240, 240);
+}
+
+.wrapper:before,
+.wrapper:after {
+  z-index: -1;
+  position: absolute;
+  content: '';
+  bottom: 1em;
+  width: 50%;
+  top: 80%;
+  background: #777;
+  box-shadow: 0 1em 0.5em #777;
+}
+.wrapper:before {
+  transform: rotate(-3deg);
+  left: 0.5em;
+}
+.wrapper:after {
+  transform: rotate(3deg);
+  right: 0.5em;
+}
