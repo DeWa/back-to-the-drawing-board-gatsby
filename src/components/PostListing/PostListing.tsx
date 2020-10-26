@@ -1,20 +1,17 @@
 import React, { FunctionComponent } from 'react';
+import styled from '@emotion/styled';
 
-import Post from './Post/Post';
-import styles from './styles.module.css';
-
-export interface PostType {
-  id: string;
-  path: string;
-  tags: string[];
-  cover: string;
-  title: string;
-  date: Date;
-  excerpt: string;
-  timeToRead: number;
-}
+import Post, { PostType } from './Post/Post';
 
 export interface Props {}
+
+const PostListingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 960px;
+  margin: 0 auto;
+`;
 
 const PostListing: FunctionComponent<Prop> = (props) => {
   const getPostList = () => {
@@ -30,6 +27,7 @@ const PostListing: FunctionComponent<Prop> = (props) => {
         date: postEdge.node.fields.date,
         excerpt: postEdge.node.excerpt,
         timeToRead: postEdge.node.timeToRead,
+        category: postEdge.node.frontmatter.category,
       });
     });
     return postList;
@@ -37,14 +35,14 @@ const PostListing: FunctionComponent<Prop> = (props) => {
   const postList = getPostList();
 
   return (
-    <div className={styles.wrapper}>
+    <PostListingWrapper>
       {
         /* Your post list here. */
-        postList.map((post) => (
-          <Post key={post.id} post={post}></Post>
+        postList.map((post, index) => (
+          <Post key={post.id} post={post} first={index === 0} />
         ))
       }
-    </div>
+    </PostListingWrapper>
   );
 };
 
