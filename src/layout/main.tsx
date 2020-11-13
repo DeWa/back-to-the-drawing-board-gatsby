@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import config from '../../data/SiteConfig';
 import Header from '../components/Header/Header';
+import Navbar from '../components/Navbar/Navbar';
 
 export interface Props {}
 
@@ -23,6 +24,7 @@ const MainLayout: FunctionComponent<Props> = (props) => {
         <meta name="description" content={config.siteDescription} />
         <html lang="en" />
       </Helmet>
+      <Navbar />
       <Header></Header>
       {children}
     </MainLayoutWrapper>
