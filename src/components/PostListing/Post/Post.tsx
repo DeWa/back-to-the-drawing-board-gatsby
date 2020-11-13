@@ -3,9 +3,6 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import Img from 'gatsby-image';
 import dayjs from 'dayjs';
-import * as relativeTime from 'dayjs/plugin/relativeTime';
-
-dayjs.extend(relativeTime);
 
 export interface Props {
   post: PostType;
