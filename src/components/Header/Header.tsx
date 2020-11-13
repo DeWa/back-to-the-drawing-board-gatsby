@@ -9,13 +9,15 @@ const HeaderWrapper = styled.header`
   align-items: center;
   flex-direction: column;
   color: #d7f3fc;
-  min-height: 400px;
+  min-height: 300px;
+  transform: rotate(-4deg);
 
   & h1 {
     font-family: 'PermanentMarker', Helvetica, Arial, sans-serif;
-    font-size: 4rem;
+    font-size: 4.5rem;
   }
   & h3 {
+    margin-top: 1rem;
     font-family: 'PermanentMarker', Helvetica, Arial, sans-serif;
   }
 `;
