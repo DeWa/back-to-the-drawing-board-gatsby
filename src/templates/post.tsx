@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import styled from '@emotion/styled';
+import dayjs from 'dayjs';
 
 import Layout from '../layout/subpage';
 import Disqus from '../components/Disqus/Disqus';
@@ -22,10 +24,62 @@ const PostWrapper = styled.article`
   margin: 10px;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 960px;
+  width: 1040px;
   margin: 0 auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 `;
 
+const Cover = styled.div`
+  min-height: 300px;
+`;
+
+const Text = styled.p`
+  letter-spacing: -0.003em;
+  line-height: 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  & p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+`;
+
+const Content = styled.section`
+  padding: 0 2rem 2rem 2rem;
+`;
+
+const Title = styled.h1`
+  font-weight: bold;
+  font-size: 3rem;
+  padding: 1rem 0 0 0;
+`;
+
+const PostInfo = styled.div`
+  padding: 1rem 0;
+  display: flex;
+  color: #3f3f3f;
+  font-size: 0.75rem;
+`;
+
+const Category = styled.div`
+  text-transform: uppercase;
+  font-weight: bold;
+`;
+const Date = styled.div`
+  text-transform: uppercase;
+`;
+const SeparatorBall = styled.span`
+  padding: 0 0.25rem;
+
+  &:after {
+    content: '•';
+  }
+`;
 const PostTemplate: FunctionComponent<Props> = (props) => {
   const { data, pageContext } = props;
   const { slug } = pageContext;
@@ -35,6 +89,14 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
     post.id = slug;
   }
 
+  const getDate = (date: Date) => {
+    if (dayjs().diff(date, 'day') < 8) {
+      return dayjs(date).fromNow();
+    } else {
+      return dayjs(date).format('MMMM DD, YYYY');
+    }
+  };
+
   return (
     <Layout>
       <div>
@@ -43,14 +105,27 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
         <PostWrapper>
-          <h1>{post.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-          <div className="post-meta">
+          <Cover>
+            <Img
+              style={{ minHeight: '100%', borderRadius: '5px' }}
+              fluid={post.cover.childImageSharp.fluid}
+            />
+          </Cover>
+          <Content>
+            <Title>{post.title}</Title>
             <PostTags tags={post.tags} />
-            <SocialLinks postPath={slug} postNode={postNode} />
-          </div>
-          <Disqus postNode={postNode} />
-          <Footer config={config} />
+            <PostInfo>
+              <Category>{post.category}</Category>
+              <SeparatorBall />
+              <Date>{getDate(post.date)}</Date>
+            </PostInfo>
+            <Text dangerouslySetInnerHTML={{ __html: postNode.html }} />
+            <div className="post-meta">
+              <SocialLinks postPath={slug} postNode={postNode} />
+            </div>
+            <Disqus postNode={postNode} />
+            <Footer config={config} />
+          </Content>
         </PostWrapper>
       </div>
     </Layout>
