@@ -17,7 +17,6 @@ const PostListing: FunctionComponent<Prop> = (props) => {
   const getPostList = () => {
     const postList: PostType[] = [];
     props.postEdges.forEach((postEdge) => {
-      console.log(postEdge);
       postList.push({
         id: postEdge.node.id,
         path: postEdge.node.fields.slug,
