@@ -1,5 +1,9 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
+import dayjs from 'dayjs';
+import * as relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 const globalStyle = css`
   html,
