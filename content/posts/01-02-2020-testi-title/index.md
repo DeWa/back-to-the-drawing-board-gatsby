@@ -9,10 +9,6 @@ tags:
   - tagging
 ---
 
-# Autolyci eminus retenta
-
-## Hoc domum solitos veteremque nostrum
-
 Lorem markdownum huc suo ara, dubites celeri mihi bicolor. Secuti non? Suo opus
 quales dant, puppim hanc!
 
