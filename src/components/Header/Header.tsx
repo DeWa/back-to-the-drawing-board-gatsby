@@ -10,15 +10,18 @@ const HeaderWrapper = styled.header`
   flex-direction: column;
   color: #d7f3fc;
   min-height: 300px;
-  transform: rotate(-4deg);
+  width: 100vw;
+  overflow: hidden;
 
   & h1 {
     font-family: 'PermanentMarker', Helvetica, Arial, sans-serif;
     font-size: 4.5rem;
+    transform: rotate(-4deg);
   }
   & h3 {
     margin-top: 1rem;
     font-family: 'PermanentMarker', Helvetica, Arial, sans-serif;
+    transform: rotate(-4deg);
   }
 `;
 const Header: FunctionComponent<Props> = (props) => {
