@@ -94,7 +94,6 @@ const getDate = (date: Date) => {
 
 const Post: FunctionComponent<Props> = (props) => {
   const { post } = props;
-  console.log(post);
 
   return (
     <PostWrapper first={props.first}>
