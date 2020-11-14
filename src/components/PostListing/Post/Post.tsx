@@ -58,10 +58,12 @@ const PostInfo = styled.div`
 const Title = styled.h2<{ first: boolean }>`
   ${(props) => (props.first ? '' : 'font-size: 1.4rem;')}
   padding: 1rem 0;
+  font-weight: bold;
 `;
 const Excerpt = styled.p`
   letter-spacing: -0.003em;
   line-height: 2rem;
+  color: #3f3f3f;
 `;
 const ReadMore = styled.div`
   font-weight: bold;
@@ -81,6 +83,15 @@ const SeparatorBall = styled.span`
 
   &:after {
     content: '•';
+  }
+`;
+
+const TitleLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+
+  &:hover {
+    color: #444;
   }
 `;
 
@@ -109,7 +120,9 @@ const Post: FunctionComponent<Props> = (props) => {
           <SeparatorBall />
           <Date>{getDate(post.date)}</Date>
         </PostInfo>
-        <Title first={props.first}>{post.title}</Title>
+        <TitleLink to={post.path}>
+          <Title first={props.first}>{post.title}</Title>
+        </TitleLink>
         <Excerpt>{post.excerpt}</Excerpt>
         <Link to={post.path}>
           <ReadMore>Read more...</ReadMore>
