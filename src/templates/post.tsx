@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 
 import Layout from '../layout/subpage';
 import Disqus from '../components/Disqus/Disqus';
-import PostTags from '../components/PostTags/PostTags';
 import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
 import Footer from '../components/Footer/Footer';
@@ -113,7 +112,6 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
           </Cover>
           <Content>
             <Title>{post.title}</Title>
-            <PostTags tags={post.tags} />
             <PostInfo>
               <Category>{post.category}</Category>
               <SeparatorBall />
@@ -124,7 +122,6 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
             <Disqus postNode={postNode} />
-            <Footer config={config} />
           </Content>
         </PostWrapper>
       </div>
