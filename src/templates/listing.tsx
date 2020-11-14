@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
+import styled from '@emotion/styled';
 
 import MainLayout from '../layout/main';
 import PostListing from '../components/PostListing/PostListing';
@@ -24,6 +25,39 @@ export interface Props {
   pageContext: IPageContext;
 }
 
+const PagingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  font-family: 'Arvo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+
+  font-size: 1.15rem;
+
+  & .page-number {
+    padding: 0.25rem 0.5rem;
+  }
+
+  & .pagination-arrow {
+    padding: 0.25rem 1.25rem;
+  }
+
+  & .current-page {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  & a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  & a:hover {
+    color: #c0c0c0;
+  }
+`;
+
 const Paging = (props: { pageContext: IPageContext }) => {
   const { currentPageNum, pageCount } = props.pageContext;
   const prevPage = currentPageNum - 1 === 1 ? '/' : `/${currentPageNum - 1}/`;
@@ -32,8 +66,12 @@ const Paging = (props: { pageContext: IPageContext }) => {
   const isLastPage = currentPageNum === pageCount;
 
   return (
-    <div className="paging-container">
-      {!isFirstPage && <Link to={prevPage}>Previous</Link>}
+    <PagingContainer>
+      {!isFirstPage && (
+        <div className="pagination-arrow">
+          <Link to={prevPage}>← Previous</Link>
+        </div>
+      )}
       {[...Array(pageCount)].map((_val, index) => {
         const pageNum = index + 1;
         return (
@@ -41,12 +79,24 @@ const Paging = (props: { pageContext: IPageContext }) => {
             key={`listing-page-${pageNum}`}
             to={pageNum === 1 ? '/' : `/${pageNum}/`}
           >
-            {pageNum}
+            <div
+              className={
+                pageNum === currentPageNum
+                  ? 'current-page page-number'
+                  : 'page-number'
+              }
+            >
+              {pageNum}
+            </div>
           </Link>
         );
       })}
-      {!isLastPage && <Link to={nextPage}>Next</Link>}
-    </div>
+      {!isLastPage && (
+        <div className="pagination-arrow">
+          <Link to={nextPage}>Next →</Link>
+        </div>
+      )}
+    </PagingContainer>
   );
 };
 const IndexPage: FunctionComponent<Props> = (props) => {
