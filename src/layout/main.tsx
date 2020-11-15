@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import config from '../../data/SiteConfig';
 import Header from '../components/Header/Header';
 import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 export interface Props {}
 
@@ -27,6 +28,7 @@ const MainLayout: FunctionComponent<Props> = (props) => {
       <Navbar />
       <Header></Header>
       {children}
+      <Footer />
     </MainLayoutWrapper>
   );
 };

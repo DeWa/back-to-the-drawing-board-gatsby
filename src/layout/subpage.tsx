@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import config from '../../data/SiteConfig';
 import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 export interface Props {}
 
@@ -25,6 +26,7 @@ const SubpageLayout: FunctionComponent<Props> = (props) => {
       </Helmet>
       <Navbar showLogo={true} />
       {children}
+      <Footer />
     </MainLayoutWrapper>
   );
 };
