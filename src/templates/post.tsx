@@ -9,7 +9,6 @@ import Layout from '../layout/subpage';
 import Disqus from '../components/Disqus/Disqus';
 import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
-import Footer from '../components/Footer/Footer';
 import config from '../../data/SiteConfig';
 
 export interface Props {

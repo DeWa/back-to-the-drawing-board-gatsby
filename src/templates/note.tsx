@@ -1,10 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from '@emotion/styled';
+import dayjs from 'dayjs';
 
-import Layout from '../layout/main';
+import Layout from '../layout/subpage';
+import Disqus from '../components/Disqus/Disqus';
+import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
-import Footer from '../components/Footer/Footer';
 import config from '../../data/SiteConfig';
 
 export interface Props {
@@ -12,6 +16,68 @@ export interface Props {
   pageContext: any;
 }
 
+const NoteWrapper = styled.article`
+  background: rgb(240, 240, 240);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 1040px;
+  margin: 0 auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+`;
+
+const Cover = styled.div`
+  min-height: 300px;
+`;
+
+const Text = styled.p`
+  letter-spacing: -0.003em;
+  line-height: 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  & p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+`;
+
+const Content = styled.section`
+  padding: 0 2rem 2rem 2rem;
+`;
+
+const Title = styled.h1`
+  font-weight: bold;
+  font-size: 3rem;
+  padding: 1rem 0 0 0;
+`;
+
+const NoteInfo = styled.div`
+  padding: 1rem 0;
+  display: flex;
+  color: #3f3f3f;
+  font-size: 0.75rem;
+`;
+
+const Category = styled.div`
+  text-transform: uppercase;
+  font-weight: bold;
+`;
+const Date = styled.div`
+  text-transform: uppercase;
+`;
+const SeparatorBall = styled.span`
+  padding: 0 0.25rem;
+
+  &:after {
+    content: '•';
+  }
+`;
 const NoteTemplate: FunctionComponent<Props> = (props) => {
   const { data, pageContext } = props;
   const { slug } = pageContext;
@@ -21,19 +87,31 @@ const NoteTemplate: FunctionComponent<Props> = (props) => {
     note.id = slug;
   }
 
+  const getDate = (date: Date) => {
+    if (dayjs().diff(date, 'day') < 8) {
+      return dayjs(date).fromNow();
+    } else {
+      return dayjs(date).format('MMMM DD, YYYY');
+    }
+  };
+
   return (
     <Layout>
       <div>
         <Helmet>
           <title>{`${note.title} | ${config.siteTitle}`}</title>
         </Helmet>
-        <SEO postPath={slug} postNode={noteNode} postSEO />
-        <div>
-          <h1>{note.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: noteNode.html }} />
-          <div className="post-meta"></div>
-          <Footer config={config} />
-        </div>
+        <NoteWrapper>
+          <Content>
+            <Title>{note.title}</Title>
+            <NoteInfo>
+              <Category>{note.category}</Category>
+              <SeparatorBall />
+              <Date>{getDate(note.date)}</Date>
+            </NoteInfo>
+            <Text dangerouslySetInnerHTML={{ __html: noteNode.html }} />
+          </Content>
+        </NoteWrapper>
       </div>
     </Layout>
   );
@@ -46,8 +124,6 @@ export const pageQuery = graphql`
   query NoteBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
-      timeToRead
-      excerpt
       frontmatter {
         title
         date
