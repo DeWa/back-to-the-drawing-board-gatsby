@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import MainLayout from '../layout/main';
-import PostListing from '../components/PostListing/PostListing';
+import SubLayout from '../layout/subpage';
+import NoteListing from '../components/NoteListing/NoteListing';
 import SEO from '../components/SEO/SEO';
 import config from '../../data/SiteConfig';
 
@@ -15,15 +15,15 @@ const NotesPage: FunctionComponent<Props> = (props) => {
   const noteEdges = props.data.allMarkdownRemark.edges;
 
   return (
-    <MainLayout>
+    <SubLayout>
       <div className="landing-container">
         <div className="posts-container">
           <Helmet title={config.siteTitle} />
           <SEO />
-          <PostListing postEdges={noteEdges} />
+          <NoteListing noteEdges={noteEdges} />
         </div>
       </div>
-    </MainLayout>
+    </SubLayout>
   );
 };
 
