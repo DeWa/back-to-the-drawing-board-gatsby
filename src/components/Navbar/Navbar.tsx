@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 
 export interface IProps {
   showLogo?: boolean;
@@ -53,9 +54,15 @@ const Navbar: FunctionComponent<IProps> = (props) => {
     <NavbarWrapper>
       <Logo>{showLogo && <a href="/">Back to the Drawing Board</a>}</Logo>
       <Links>
-        <li>Notes</li>
-        <li>Archive</li>
-        <li>About</li>
+        <li>
+          <Link to={'/notes'}>Notes</Link>
+        </li>
+        <li>
+          <Link to={'/archive'}>Archive</Link>
+        </li>
+        <li>
+          <Link to={'/about'}>About</Link>
+        </li>
       </Links>
     </NavbarWrapper>
   );
