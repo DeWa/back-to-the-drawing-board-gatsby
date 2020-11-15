@@ -28,24 +28,28 @@ export interface Props {
 const PagingContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1rem 0;
+  margin: 2rem auto;
+  padding: 0 0;
   font-family: 'Arvo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
-
   font-size: 1.15rem;
+  border-radius: 5px;
+  width: 400px;
+  background: #0d1f4b;
 
   & .page-number {
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-left: solid #6990f3 1px;
   }
 
   & .pagination-arrow {
-    padding: 0.25rem 1.25rem;
+    padding: 0.5rem 1.25rem;
   }
 
   & .current-page {
-    font-weight: bold;
-    text-decoration: underline;
+    background: #6990f3;
+    color: #fff;
   }
 
   & a {
@@ -55,6 +59,12 @@ const PagingContainer = styled.div`
 
   & a:hover {
     color: #c0c0c0;
+  }
+`;
+
+const Numbers = styled.div`
+  display: flex;
+  & .page-number::last-child {
   }
 `;
 
@@ -72,25 +82,27 @@ const Paging = (props: { pageContext: IPageContext }) => {
           <Link to={prevPage}>← Previous</Link>
         </div>
       )}
-      {[...Array(pageCount)].map((_val, index) => {
-        const pageNum = index + 1;
-        return (
-          <Link
-            key={`listing-page-${pageNum}`}
-            to={pageNum === 1 ? '/' : `/${pageNum}/`}
-          >
-            <div
-              className={
-                pageNum === currentPageNum
-                  ? 'current-page page-number'
-                  : 'page-number'
-              }
+      <Numbers>
+        {[...Array(pageCount)].map((_val, index) => {
+          const pageNum = index + 1;
+          return (
+            <Link
+              key={`listing-page-${pageNum}`}
+              to={pageNum === 1 ? '/' : `/${pageNum}/`}
             >
-              {pageNum}
-            </div>
-          </Link>
-        );
-      })}
+              <div
+                className={
+                  pageNum === currentPageNum
+                    ? 'current-page page-number'
+                    : 'page-number'
+                }
+              >
+                {pageNum}
+              </div>
+            </Link>
+          );
+        })}
+      </Numbers>
       {!isLastPage && (
         <div className="pagination-arrow">
           <Link to={nextPage}>Next →</Link>
