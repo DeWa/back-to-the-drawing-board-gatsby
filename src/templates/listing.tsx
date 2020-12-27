@@ -40,7 +40,6 @@ const PagingContainer = styled.div`
 
   & .page-number {
     padding: 0.5rem 0.75rem;
-    border-left: solid #6990f3 1px;
   }
 
   & .pagination-arrow {
