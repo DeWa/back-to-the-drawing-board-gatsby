@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import {
-  FaTelegram,
   FaTwitter,
   FaSpotify,
   FaGithub,

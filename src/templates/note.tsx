@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 import Layout from '../layout/subpage';
-import SEO from '../components/SEO/SEO';
 import config from '../../data/SiteConfig';
 
 export interface Props {
