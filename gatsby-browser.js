@@ -249,6 +249,14 @@ const globalStyle = css`
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
   }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
 `;
 
 const wrapRootElement = ({ element }) => {
