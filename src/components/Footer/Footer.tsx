@@ -109,14 +109,14 @@ const Footer: FunctionComponent = () => {
         <div>
           <ul className="social-list">
             <li>
-              <Link to={'https://github.com/DeWa'}>
+              <a href={'https://github.com/DeWa'} rel="noopener">
                 <FaGithub />
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to={'https://twitter.com/DeWast'}>
+              <a href={'https://twitter.com/DeWast'} rel="noopener">
                 <FaTwitter />
-              </Link>
+              </a>
             </li>
             <li>
               <a href={'mailto:me@joonas.dev'}>
@@ -124,16 +124,20 @@ const Footer: FunctionComponent = () => {
               </a>
             </li>
             <li>
-              <Link
-                to={'https://www.linkedin.com/in/joonas-reinikka-44358a44/'}
+              <a
+                href={'https://www.linkedin.com/in/joonas-reinikka-44358a44/'}
+                rel="noopener"
               >
                 <FaLinkedin />
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to={'https://open.spotify.com/user/dewanderer'}>
+              <a
+                href={'https://open.spotify.com/user/dewanderer'}
+                rel="noopener"
+              >
                 <FaSpotify />
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
