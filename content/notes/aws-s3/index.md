@@ -2,6 +2,8 @@
 title: 'AWS S3'
 date: '2017-02-01'
 category: 'AWS'
+sources:
+  - Google 2020, <em><a href="https://www.google.com">https://www.google.com</a></em>
 ---
 
 # Autolyci eminus retenta

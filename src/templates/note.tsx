@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 import Layout from '../layout/subpage';
-import Disqus from '../components/Disqus/Disqus';
-import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
 import config from '../../data/SiteConfig';
 
@@ -78,6 +77,28 @@ const SeparatorBall = styled.span`
     content: '•';
   }
 `;
+const Sources = styled.div`
+  padding: 0 2rem 2rem 2rem;
+
+  & h4 {
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+`;
+const Source = styled.div``;
+const BackButton = styled.div`
+  padding: 0 2rem 1rem 2rem;
+
+  & a {
+    color: #000;
+    text-decoration: none;
+
+    &:hover {
+      color: #292828;
+    }
+  }
+`;
+
 const NoteTemplate: FunctionComponent<Props> = (props) => {
   const { data, pageContext } = props;
   const { slug } = pageContext;
@@ -86,6 +107,7 @@ const NoteTemplate: FunctionComponent<Props> = (props) => {
   if (!note.id) {
     note.id = slug;
   }
+  console.log(data);
 
   const getDate = (date: Date) => {
     if (dayjs().diff(date, 'day') < 8) {
@@ -102,15 +124,31 @@ const NoteTemplate: FunctionComponent<Props> = (props) => {
           <title>{`${note.title} | ${config.siteTitle}`}</title>
         </Helmet>
         <NoteWrapper>
+          <BackButton>
+            <Link to="/notes">
+              <FaLongArrowAltLeft
+                style={{ display: 'inline-block', paddingTop: '5px' }}
+              />{' '}
+              Back to notes
+            </Link>
+          </BackButton>
           <Content>
             <Title>{note.title}</Title>
             <NoteInfo>
               <Category>{note.category}</Category>
               <SeparatorBall />
-              <Date>{getDate(note.date)}</Date>
+              <Date>Updated: {getDate(note.date)}</Date>
             </NoteInfo>
             <Text dangerouslySetInnerHTML={{ __html: noteNode.html }} />
           </Content>
+          {note.sources && (
+            <Sources>
+              <h4>Sources</h4>
+              {note.sources.map((source) => {
+                return <Source dangerouslySetInnerHTML={{ __html: source }} />;
+              })}
+            </Sources>
+          )}
         </NoteWrapper>
       </div>
     </Layout>
@@ -128,6 +166,7 @@ export const pageQuery = graphql`
         title
         date
         category
+        sources
       }
       fields {
         slug

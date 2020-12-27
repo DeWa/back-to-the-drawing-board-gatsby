@@ -11,24 +11,37 @@ const NoteListingWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 960px;
+  width: 1040px;
   margin: 0 auto;
   min-height: calc(100vh - 200px);
 
   & h1,
   h3 {
     font-family: 'PermanentMarker', Helvetica, Arial, sans-serif !important;
-    text-decoration: underline;
-    color: #d7f3fc;
   }
 
   & h1 {
+    text-decoration: underline;
+    color: #d7f3fc;
     font-size: 3rem;
     padding: 0 0 2rem 0;
   }
-  & h2 {
+
+  & h3 {
     padding: 1rem 0;
   }
+`;
+
+const NoteListingContent = styled.section`
+  background: rgb(240, 240, 240);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 1rem 2rem 2rem 2rem;
+  width: 1040px;
+  margin: 0 auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 `;
 
 const CategoryList = styled.div`
@@ -36,7 +49,7 @@ const CategoryList = styled.div`
   display: flex;
 
   & .note-title a {
-    color: #d7f3fc;
+    color: #000;
     font-family: 'Arvo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -55,11 +68,13 @@ interface NoteType {
   title: string;
   date: string;
   category: string;
+  sources: string[];
 }
 
 const NoteListing: FunctionComponent<IProps> = (props) => {
   const getNotesByCategory = () => {
     const noteList: NoteType[] = [];
+
     props.noteEdges.forEach((noteEdge) => {
       noteList.push({
         id: noteEdge.node.id,
@@ -67,9 +82,9 @@ const NoteListing: FunctionComponent<IProps> = (props) => {
         title: noteEdge.node.frontmatter.title,
         date: noteEdge.node.fields.date,
         category: noteEdge.node.frontmatter.category,
+        sources: noteEdge.node.frontmatter.sources,
       });
     });
-    console.log(noteList);
 
     const notesByCategory = groupBy(
       noteList,
@@ -83,21 +98,23 @@ const NoteListing: FunctionComponent<IProps> = (props) => {
   return (
     <NoteListingWrapper>
       <h1>Notes</h1>
-      {Object.keys(notesByCategory).map((category: string) => {
-        const noteList = notesByCategory[category];
-        return (
-          <>
-            <h3>{category}</h3>
-            <CategoryList>
-              {noteList.map((note, index) => (
-                <div className="note-title">
-                  <Link to={note.path}>{note.title}</Link>
-                </div>
-              ))}
-            </CategoryList>
-          </>
-        );
-      })}
+      <NoteListingContent>
+        {Object.keys(notesByCategory).map((category: string) => {
+          const noteList = notesByCategory[category];
+          return (
+            <React.Fragment key={category}>
+              <h3>{category}</h3>
+              <CategoryList>
+                {noteList.map((note, index) => (
+                  <div key={note.id} className="note-title">
+                    <Link to={note.path}>{note.title}</Link>
+                  </div>
+                ))}
+              </CategoryList>
+            </React.Fragment>
+          );
+        })}
+      </NoteListingContent>
     </NoteListingWrapper>
   );
 };
