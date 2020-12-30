@@ -10,11 +10,13 @@ const Wrapper = styled.div`
   text-align: center;
 
   & h1 {
+    font-weight: bold;
     font-size: 6rem;
     color: #d7f3fc;
   }
 
   & h2 {
+    font-weight: bold;
     font-size: 2.3rem;
     color: #d7f3fc;
   }
