@@ -103,7 +103,7 @@ const Footer: FunctionComponent = () => {
         </ul>
       </PageLinks>
       <SocialMedia>
-        <div className="copyright">Joonas Reinikka © 2020</div>
+        <div className="copyright">Joonas Reinikka © 2021</div>
         <div className="title">Contact me</div>
         <div>
           <ul className="social-list">
