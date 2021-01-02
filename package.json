@@ -36,6 +36,7 @@
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
     "react-share": "^4.3.1",
+    "react-spring": "^8.0.27",
     "url-join": "^4.0.0"
   },
   "devDependencies": {
