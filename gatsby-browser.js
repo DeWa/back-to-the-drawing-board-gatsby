@@ -3,6 +3,10 @@ import { Global, css } from '@emotion/core';
 import dayjs from 'dayjs';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
 
+// PrismJS theme
+require('prismjs/themes/prism-tomorrow.css');
+require('prismjs/plugins/command-line/prism-command-line.css');
+
 dayjs.extend(relativeTime);
 
 const globalStyle = css`
@@ -257,6 +261,10 @@ const globalStyle = css`
 
   strong {
     font-weight: bold;
+  }
+
+  .gatsby-highlight {
+    margin-block-end: 1em;
   }
 `;
 
