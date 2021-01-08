@@ -1,41 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
 import styled from '@emotion/styled';
 import { Transition, animated } from 'react-spring/renderprops';
-
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 
-const lists = [
-  {
-    title: 'Top 5 movies',
-    list: [
-      'Pulp Fiction',
-      'Battle Royale',
-      'saodoasidhasdas',
-      'asdouasudhsaodhasoudhas',
-      'asdpjsaiodjhsaiodj',
-    ],
-  },
-  {
-    title: 'Top 5 albums',
-    list: [
-      'Pulp Fiction',
-      'Battle Royale',
-      'saodoasidhasdas',
-      'asdouasudhsaodhasoudhas',
-      'asdpjsaiodjhsaiodj',
-    ],
-  },
-  {
-    title: 'Top 5 PS4 games',
-    list: [
-      'Pulp Fiction',
-      'Battle Royale',
-      'saodoasidhasdas',
-      'asdouasudhsaodhasoudhas',
-      'asdpjsaiodjhsaiodj',
-    ],
-  },
-];
+import lists from './lists';
+
 const Wrapper = styled.div``;
 const Title = styled.h3`
   padding: 0.5rem 0;
@@ -49,6 +18,61 @@ const List = styled.section`
     text-align: left;
     list-style-type: decimal;
     list-style-position: inside;
+  }
+
+  & .tooltip {
+    background: #f2f2f2;
+    bottom: 100%;
+    color: #1f1f1f;
+    font-size: 0.75rem;
+    display: block;
+    left: -20px;
+    margin-bottom: 15px;
+    opacity: 0;
+    padding: 0.25rem 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    transform: translateY(10px);
+    transition: all 0.25s ease-out;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  }
+
+  /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+  & .tooltip:before {
+    bottom: -20px;
+    content: ' ';
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  /* CSS Triangles - see Trevor's post */
+  & .tooltip:after {
+    border-left: solid transparent 10px;
+    border-right: solid transparent 10px;
+    border-top: solid #f2f2f2 10px;
+    bottom: -10px;
+    content: ' ';
+    height: 0;
+    left: 50%;
+    margin-left: -13px;
+    position: absolute;
+    width: 0;
+  }
+
+  & .tooltipable {
+    color: #18548c;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  & li:hover > .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
   }
 `;
 const ListTitle = styled.h4`
@@ -87,7 +111,7 @@ const TopLists: FunctionComponent = () => {
 
   return (
     <Wrapper>
-      <Title>USELESS TOP 5 LISTS</Title>
+      <Title>RANDOM TOP 5 LISTS</Title>
       <List>
         <Arrow onClick={prevList}>
           <FaAngleLeft />
@@ -128,7 +152,17 @@ const TopLists: FunctionComponent = () => {
               <ListTitle>{list.title}</ListTitle>
               <ol>
                 {list.list.map((rank, index) => (
-                  <li key={index}>{rank}</li>
+                  <>
+                    <li
+                      key={index}
+                      className={list.tooltips[index] !== '' && 'tooltipable'}
+                    >
+                      {rank}
+                      {list.tooltips[index] !== '' && (
+                        <div className="tooltip">{list.tooltips[index]}</div>
+                      )}
+                    </li>
+                  </>
                 ))}
               </ol>
             </animated.div>

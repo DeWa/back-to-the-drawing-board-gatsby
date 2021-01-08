@@ -69,6 +69,7 @@ const Photo = styled.div`
   }
 `;
 const PhotoTitleWrapper = styled.section`
+  text-align: right;
   flex: 50%;
 `;
 const DescriptionWrapper = styled.section`
