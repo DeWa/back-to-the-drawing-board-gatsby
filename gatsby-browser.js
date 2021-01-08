@@ -232,6 +232,7 @@ const globalStyle = css`
 
   body {
     min-height: 100%;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
