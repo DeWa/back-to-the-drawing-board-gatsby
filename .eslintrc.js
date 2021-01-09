@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     'react/display-name': 'off',
+    'react/prop-types': 'off',
   },
   overrides: [
     {
