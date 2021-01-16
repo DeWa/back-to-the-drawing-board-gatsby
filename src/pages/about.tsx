@@ -136,16 +136,17 @@ const AboutPage: FunctionComponent = () => {
         <DescriptionWrapper>
           <DescriptionText>
             <p>
-              I'm 30<span className="smalltext">something</span> year-old
-              software developer from Tampere, Finland. I've been doing web
-              development professionally almost 7 years now and it's the thing
-              I'm best at. But my real passion is in the product development. I
-              love to try new things and techs and innovate something new. I've
-              got dozens of project ideas just laying around.
+              I&apos;m 30<span className="smalltext">something</span> year-old
+              software developer from Tampere, Finland. I&apos;ve been doing web
+              development professionally almost 7 years now and it&apos;s the
+              thing I&apos;m best at. But my real passion is in the product
+              development. I love to try new things and techs and innovate
+              something new. I&apos;ve got dozens of project ideas just laying
+              around.
             </p>
             <p>
-              And that's also the idea behind this blog. To write down my my
-              experiences with doing these projects and maybe giving tips to
+              And that&apos;s also the idea behind this blog. To write down my
+              my experiences with doing these projects and maybe giving tips to
               someone who wants do these projects as well (Every now I might
               post something about new framework or some new gadget).
             </p>
