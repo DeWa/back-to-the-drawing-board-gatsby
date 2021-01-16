@@ -6,10 +6,12 @@ import dayjs from 'dayjs';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 import Layout from '../layout/subpage';
-import config from '../../data/SiteConfig';
+import config from '../config';
+import { NoteBySlugQuery } from '../graphql-type';
+import media from '../helpers/media';
 
 export interface Props {
-  data: any;
+  data: NoteBySlugQuery;
   pageContext: any;
 }
 
