@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 
 import Layout from '../layout/subpage';
-import Disqus from '../components/Disqus/Disqus';
 import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
 import config from '../../data/SiteConfig';
@@ -120,7 +119,7 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
             <div className="post-meta">
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            <Disqus postNode={postNode} />
+            {/* COMMENTS WILL COME HERE*/}
           </Content>
         </PostWrapper>
       </div>
