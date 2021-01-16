@@ -135,7 +135,17 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
             <div className="post-meta">
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            {/* COMMENTS WILL COME HERE*/}
+            <div>
+              <script
+                src="https://utteranc.es/client.js"
+                repo="DeWa/back-to-the-drawing-board"
+                issue-term="pathname"
+                label="comment"
+                theme="icy-dark"
+                crossOrigin="anonymous"
+                async
+              ></script>
+            </div>
           </Content>
         </PostWrapper>
       </div>
