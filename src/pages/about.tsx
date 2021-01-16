@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import SubLayout from '../layout/subpage';
 import SEO from '../components/SEO/SEO';
-import config from '../../data/SiteConfig';
+import config from '../config';
 import TopLists from '../components/TopLists/TopLists';
 
 const Wrapper = styled.div`

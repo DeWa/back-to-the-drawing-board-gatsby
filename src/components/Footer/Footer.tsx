@@ -79,11 +79,6 @@ const SocialMedia = styled.div`
 `;
 
 const Footer: FunctionComponent = () => {
-  const RssUrl = config.siteRss;
-  const { copyright } = config;
-  if (!copyright) {
-    return null;
-  }
   return (
     <FooterWrapper>
       <PageLinks>
@@ -142,7 +137,7 @@ const Footer: FunctionComponent = () => {
         </div>
       </SocialMedia>
       <RSS>
-        <Link to={RssUrl}>
+        <Link to={'/rss.xml'}>
           <FaRssSquare />
         </Link>
       </RSS>

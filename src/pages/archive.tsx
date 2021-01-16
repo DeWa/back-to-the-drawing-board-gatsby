@@ -4,12 +4,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
 import SubLayout from '../layout/subpage';
-import SEO from '../components/SEO/SEO';
-import config from '../../data/SiteConfig';
-
-export interface Props {
-  data: any;
-}
+import config from '../config';
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -22,12 +17,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const ArchivePage: FunctionComponent<Props> = (props) => {
+const ArchivePage: FunctionComponent = () => {
   return (
     <SubLayout>
       <Wrapper>
         <Helmet title={config.siteTitle} />
-        <SEO />
         <h2>Coming soon...</h2>
       </Wrapper>
     </SubLayout>

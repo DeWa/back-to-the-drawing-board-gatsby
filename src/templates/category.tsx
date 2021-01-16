@@ -4,11 +4,14 @@ import { graphql } from 'gatsby';
 
 import MainLayout from '../layout/main';
 import PostListing from '../components/PostListing/PostListing';
-import config from '../../data/SiteConfig';
+import config from '../config';
+import { CategoryPageQuery } from '../graphql-type';
 
 export interface Props {
-  pageContext: any;
-  data: any;
+  pageContext: {
+    category: string;
+  };
+  data: CategoryPageQuery;
 }
 
 const CategoryTemplate: FunctionComponent<Props> = (props) => {

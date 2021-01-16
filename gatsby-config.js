@@ -1,21 +1,16 @@
-const urljoin = require('url-join');
 const path = require('path');
-const config = require('./data/SiteConfig');
 
 module.exports = {
-  pathPrefix: config.pathPrefix === '' ? '/' : config.pathPrefix,
+  pathPrefix: '/',
   siteMetadata: {
-    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
+    siteUrl: 'https://blog.joonas.dev/',
     rssMetadata: {
-      site_url: urljoin(config.siteUrl, config.pathPrefix),
-      feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
-      title: config.siteTitle,
-      description: config.siteDescription,
-      image_url: `${urljoin(
-        config.siteUrl,
-        config.pathPrefix
-      )}/logos/logo-512.png`,
-      copyright: config.copyright,
+      site_url: 'https://blog.joonas.dev/',
+      feed_url: 'https://blog.joonas.dev/rss.xml',
+      title: 'Back to the Drawing Board',
+      description: 'Code, Gadgets and Experiments',
+      image_url: 'https://blog.joonas.dev//logos/logo-512.png',
+      copyright: '(c) Joonas Reinikka 2021',
     },
   },
   plugins: [
@@ -62,15 +57,9 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: config.googleAnalyticsID,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-nprogress',
       options: {
-        color: config.themeColor,
+        color: '#6990f3',
       },
     },
     'gatsby-plugin-sharp',
@@ -81,12 +70,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: config.siteTitle,
-        short_name: config.siteTitleShort,
-        description: config.siteDescription,
-        start_url: config.pathPrefix,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
+        name: 'Back to the Drawing Board',
+        short_name: 'BttDB',
+        description: 'A blog about code, gadgets and experiments',
+        start_url: '/',
+        background_color: '#0d1f4b',
+        theme_color: '#0d1f4b',
         display: 'minimal-ui',
         icons: [
           {
@@ -109,7 +98,7 @@ module.exports = {
         setup(ref) {
           const ret = ref.query.site.siteMetadata.rssMetadata;
           ret.allMarkdownRemark = ref.query.allMarkdownRemark;
-          ret.generator = 'GatsbyJS Advanced Starter';
+          ret.generator = 'daffgsg';
           return ret;
         },
         query: `
@@ -141,7 +130,7 @@ module.exports = {
                 guid: rssMetadata.site_url + edge.node.fields.slug,
                 custom_elements: [
                   { 'content:encoded': edge.node.html },
-                  { author: config.userEmail },
+                  { author: 'me@joonas.dev' },
                 ],
               }));
             },
@@ -172,8 +161,8 @@ module.exports = {
               }
             }
           `,
-            output: config.siteRss,
-            title: config.siteRssTitle,
+            output: 'rss.xml',
+            title: 'Back to the Drawing Board',
           },
         ],
       },

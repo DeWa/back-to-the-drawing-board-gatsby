@@ -13,13 +13,13 @@ import {
   LinkedinIcon,
   RedditIcon,
 } from 'react-share';
-import urljoin from 'url-join';
 import styled from '@emotion/styled';
 
-import config from '../../../data/SiteConfig';
+import config from '../../config';
+import { IPostNode } from '../../types';
 
 export interface IProps {
-  postNode: any;
+  postNode: IPostNode;
   postPath: string;
   mobile: boolean;
 }
@@ -43,10 +43,10 @@ const Links = styled.div``;
 const SocialLinks: FunctionComponent<IProps> = (props) => {
   const { postNode, postPath, mobile } = props;
   const post = postNode.frontmatter;
-  const url = urljoin(config.siteUrl, config.pathPrefix, postPath);
+  const url = `${config.siteUrl}${config.pathPrefix}${postPath}`;
   const iconSize = mobile ? 36 : 48;
-  const filter = (count) => (count > 0 ? count : '');
-  const renderShareCount = (count) => (
+  const filter = (count: number) => (count > 0 ? count : '');
+  const renderShareCount = (count: number) => (
     <div className="share-count">{filter(count)}</div>
   );
 

@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
-import urljoin from 'url-join';
 import dayjs from 'dayjs';
 
-import config from '../../../data/SiteConfig';
+import config from '../../config';
 
 export interface Props {
   postNode?: any;
-  postPath?: any;
+  postPath?: string;
   postSEO?: any;
 }
 
@@ -55,19 +54,17 @@ interface SchemaOrgJSONLD {
 
 const SEO: FunctionComponent<Props> = (props) => {
   const { postNode, postPath, postSEO } = props;
-  let title;
-  let description;
-  let imageUrl;
-  let postURL;
+  let title: string;
+  let description: string;
+  let imageUrl: string;
+  let postURL: string;
 
   if (postSEO) {
     const postMeta = postNode.frontmatter;
     ({ title } = postMeta);
-    description = postMeta.description
-      ? postMeta.description
-      : postNode.excerpt;
+    description = postNode.excerpt;
     imageUrl = postMeta.cover.childImageSharp.fluid.src;
-    postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
+    postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
   } else {
     title = config.siteTitle;
     description = config.siteDescription;
@@ -98,14 +95,14 @@ const SEO: FunctionComponent<Props> = (props) => {
     url: imageUrl,
   };
 
-  const blogURL = urljoin(config.siteUrl, config.pathPrefix);
+  const blogURL = `config.siteUrl, config.pathPrefix`;
   const schemaOrgJSONLD: SchemaOrgJSONLD[] = [
     {
       '@context': 'http://schema.org',
       '@type': 'WebSite',
       url: blogURL,
       name: title,
-      alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+      alternateName: '',
     },
   ];
   if (postSEO) {
@@ -130,7 +127,7 @@ const SEO: FunctionComponent<Props> = (props) => {
         '@type': 'BlogPosting',
         url: blogURL,
         name: title,
-        alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+        alternateName: '',
         headline: title,
         image: { '@type': 'ImageObject', url: imageUrl },
         author: authorJSONLD,

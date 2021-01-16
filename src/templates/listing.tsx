@@ -6,7 +6,8 @@ import styled from '@emotion/styled';
 import MainLayout from '../layout/main';
 import PostListing from '../components/PostListing/PostListing';
 import SEO from '../components/SEO/SEO';
-import config from '../../data/SiteConfig';
+import config from '../config';
+import { ListingQueryQuery } from '../graphql-type';
 
 export interface IPageContext {
   currentPageNum: number;
@@ -15,13 +16,7 @@ export interface IPageContext {
   skip: number;
 }
 export interface Props {
-  data: {
-    allMarkdownRemark: {
-      edges: {
-        [id: number]: any;
-      };
-    };
-  };
+  data: ListingQueryQuery;
   pageContext: IPageContext;
 }
 

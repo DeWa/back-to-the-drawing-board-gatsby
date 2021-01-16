@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
-import config from '../../data/SiteConfig';
+import config from '../config';
 import Header from '../components/Header/Header';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';

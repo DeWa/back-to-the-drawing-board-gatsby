@@ -3,11 +3,12 @@ import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '../layout/main';
 import PostListing from '../components/PostListing/PostListing';
-import config from '../../data/SiteConfig';
+import config from '../config';
+import { SitePageContext, TagPageQuery } from '../graphql-type';
 
 export interface Props {
-  pageContext: any;
-  data: any;
+  pageContext: SitePageContext;
+  data: TagPageQuery;
 }
 const TagTemplate: FunctionComponent<Props> = (props) => {
   const { tag } = props.pageContext;
@@ -16,7 +17,9 @@ const TagTemplate: FunctionComponent<Props> = (props) => {
   return (
     <Layout>
       <div className="tag-container">
-        <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
+        <Helmet
+          title={`Posts tagged as "${tag || ''}" | ${config.siteTitle}`}
+        />
         <PostListing postEdges={postEdges} />
       </div>
     </Layout>

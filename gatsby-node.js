@@ -5,8 +5,6 @@ const _ = require('lodash');
 const dayjs = require('dayjs');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-const siteConfig = require('./data/SiteConfig');
-
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
@@ -27,7 +25,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
 
     if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'date')) {
-      const date = dayjs(node.frontmatter.date, siteConfig.dateFromFormat);
+      const date = dayjs(node.frontmatter.date, 'DD-MM-YYYY');
       if (!date.isValid)
         console.warn(`WARNING: Invalid date.`, node.frontmatter);
 
@@ -103,9 +101,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Sort posts
   postsEdges.sort((postA, postB) => {
-    const dateA = dayjs(postA.node.frontmatter.date, siteConfig.dateFromFormat);
+    const dateA = dayjs(postA.node.frontmatter.date, 'DD-MM-YYYY');
 
-    const dateB = dayjs(postB.node.frontmatter.date, siteConfig.dateFromFormat);
+    const dateB = dayjs(postB.node.frontmatter.date, 'DD-MM-YYYY');
 
     if (dateA.isBefore(dateB)) return 1;
     if (dateB.isBefore(dateA)) return -1;
@@ -114,7 +112,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Paging
-  const { postsPerPage } = siteConfig;
+  const postsPerPage = 7;
   if (postsPerPage) {
     const pageCount = Math.ceil(postsEdges.length / postsPerPage);
 

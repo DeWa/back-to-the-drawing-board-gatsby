@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 
 import SubpageLayout from '../layout/subpage';
-import config from '../../data/SiteConfig';
+import config from '../config';
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -26,7 +26,7 @@ class NotFoundPage extends Component {
   render() {
     return (
       <SubpageLayout>
-        <Helmet title={`${config.siteTitle} - Page Not Found!`} />
+        <Helmet title={`${config.siteTitle} :: Page Not Found!`} />
         <Wrapper>
           <h1>404</h1>
           <h2>Page Not Found!</h2>
