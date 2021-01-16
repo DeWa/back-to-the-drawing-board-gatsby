@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import { groupBy } from 'lodash';
 import { Link } from 'gatsby';
+import media from '../../helpers/media';
 
 export interface IProps {
   noteEdges: any;
@@ -11,7 +12,7 @@ const NoteListingWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 1040px;
+  width: 100%;
   margin: 0 auto;
   min-height: calc(100vh - 200px);
 
@@ -30,6 +31,10 @@ const NoteListingWrapper = styled.div`
   & h3 {
     padding: 1rem 0;
   }
+
+  ${media['lg']} {
+    width: 1040px;
+  }
 `;
 
 const NoteListingContent = styled.section`
@@ -38,10 +43,14 @@ const NoteListingContent = styled.section`
   margin: 10px;
   border-radius: 5px;
   padding: 1rem 2rem 2rem 2rem;
-  width: 1040px;
+  width: 100%;
   margin: 0 auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  ${media['lg']} {
+    width: 1040px;
+  }
 `;
 
 const CategoryList = styled.div`

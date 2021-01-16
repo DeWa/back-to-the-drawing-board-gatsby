@@ -9,11 +9,11 @@ import {
   FaLinkedin,
   FaRssSquare,
 } from 'react-icons/fa';
-
-import config from '../../../data/SiteConfig';
+import media from '../../helpers/media';
 
 const FooterWrapper = styled.footer`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 3rem;
   background: #0d1f4b;
@@ -21,9 +21,16 @@ const FooterWrapper = styled.footer`
   padding: 2rem 3rem;
   font-family: 'PermanentMarker', Helvetica, Arial, sans-serif;
   color: #d7f3fc;
+
+  ${media['lg']} {
+    flex-direction: row;
+  }
 `;
 
 const PageLinks = styled.div`
+  text-align: center;
+  order: 3;
+
   & li {
     padding: 0.25rem 0;
     font-size: 1.25rem;
@@ -35,9 +42,16 @@ const PageLinks = styled.div`
   & a:hover {
     color: #8fa3aa;
   }
+  ${media['lg']} {
+    order: 1;
+    text-align: left;
+  }
 `;
 const RSS = styled.div`
   font-size: 2rem;
+  order: 1;
+  text-align: center;
+  padding: 1rem;
 
   & a {
     text-decoration: none;
@@ -49,6 +63,7 @@ const RSS = styled.div`
 `;
 const SocialMedia = styled.div`
   text-align: center;
+  order: 1;
 
   & .copyright {
     font-size: 0.75rem;

@@ -8,7 +8,8 @@ import dayjs from 'dayjs';
 import Layout from '../layout/subpage';
 import SocialLinks from '../components/SocialLinks/SocialLinks';
 import SEO from '../components/SEO/SEO';
-import config from '../../data/SiteConfig';
+import media from '../helpers/media';
+import config from '../config';
 
 export interface Props {
   data: any;
@@ -21,13 +22,27 @@ const PostWrapper = styled.article`
   margin: 10px;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 1040px;
+  width: 100%;
   margin: 0 auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  ${media['xl']} {
+    width: 1040px;
+  }
 `;
 
 const Cover = styled.div`
+  min-height: 300px;
+
+  & .gatsby-image-wrapper {
+  }
+
+  ${media['xl']} {
+  }
+`;
+
+const CoverImg = styled(Img)`
   min-height: 300px;
 `;
 
@@ -47,7 +62,11 @@ const Text = styled.p`
 `;
 
 const Content = styled.section`
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 1rem 2rem 1rem;
+
+  ${media['xl']} {
+    padding: 0 2rem 2rem 2rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -103,10 +122,7 @@ const PostTemplate: FunctionComponent<Props> = (props) => {
         <SEO postPath={slug} postNode={postNode} postSEO />
         <PostWrapper>
           <Cover>
-            <Img
-              style={{ minHeight: '100%', borderRadius: '5px' }}
-              fluid={post.cover.childImageSharp.fluid}
-            />
+            <CoverImg fluid={post.cover.childImageSharp.fluid} />
           </Cover>
           <Content>
             <Title>{post.title}</Title>
@@ -140,7 +156,7 @@ export const pageQuery = graphql`
         title
         cover {
           childImageSharp {
-            fluid(quality: 90, maxWidth: 400) {
+            fluid(quality: 90) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

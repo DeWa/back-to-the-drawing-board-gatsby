@@ -19,10 +19,14 @@ const NoteWrapper = styled.article`
   margin: 10px;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 1040px;
+  width: 100%;
   margin: 0 auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  ${media['xl']} {
+    width: 1040px;
+  }
 `;
 
 const Cover = styled.div`

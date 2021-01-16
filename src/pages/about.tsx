@@ -6,10 +6,16 @@ import SubLayout from '../layout/subpage';
 import SEO from '../components/SEO/SEO';
 import config from '../config';
 import TopLists from '../components/TopLists/TopLists';
+import media from '../helpers/media';
 
 const Wrapper = styled.div`
   min-height: 90vh;
   display: flex;
+  flex-direction: column;
+
+  ${media['lg']} {
+    flex-direction: row;
+  }
 `;
 
 const HelloTitle = styled.div`
@@ -76,10 +82,9 @@ const DescriptionWrapper = styled.section`
   flex: 50%;
 `;
 const DescriptionText = styled.article`
-  width: 450px;
+  width: 100%;
   background: rgb(240, 240, 240);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  margin: 10px;
   border-radius: 5px;
   padding: 1rem 2rem 2rem 2rem;
   letter-spacing: -0.003em;
@@ -99,6 +104,11 @@ const DescriptionText = styled.article`
 
   & .smalltext {
     font-size: 0.45rem;
+  }
+
+  ${media['lg']} {
+    width: 450px;
+    margin: 10px;
   }
 `;
 

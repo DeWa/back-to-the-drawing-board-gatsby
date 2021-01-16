@@ -2,22 +2,31 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 
 import Post, { PostType } from './Post/Post';
+import media from '../../helpers/media';
+import { CategoryPageQuery } from '../../graphql-type';
+import { Pick2 } from '../../helpers/utils';
 
-export interface Props {}
+type PostEdge = Pick2<CategoryPageQuery, 'allMarkdownRemark', 'edges'>;
+export interface IProps {
+  postEdges: PostEdge[];
+}
 
 const PostListingWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 960px;
+  width: 100%;
   margin: 0 auto;
+
+  ${media['lg']} {
+    width: 960px;
+  }
 `;
 
-const PostListing: FunctionComponent<Prop> = (props) => {
+const PostListing: FunctionComponent<IProps> = (props) => {
   const getPostList = () => {
-    const postList: PostType[] = [];
-    props.postEdges.forEach((postEdge) => {
-      postList.push({
+    const postList: PostType[] = props.postEdges.map((postEdge) => {
+      return {
         id: postEdge.node.id,
         path: postEdge.node.fields.slug,
         tags: postEdge.node.frontmatter.tags,
@@ -27,8 +36,9 @@ const PostListing: FunctionComponent<Prop> = (props) => {
         excerpt: postEdge.node.excerpt,
         timeToRead: postEdge.node.timeToRead,
         category: postEdge.node.frontmatter.category,
-      });
+      };
     });
+
     return postList;
   };
   const postList = getPostList();

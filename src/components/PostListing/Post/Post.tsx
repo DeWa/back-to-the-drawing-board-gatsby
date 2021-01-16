@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import dayjs from 'dayjs';
+
+import media from '../../../helpers/media';
 
 export interface Props {
   post: PostType;
@@ -12,7 +14,11 @@ export interface PostType {
   id: string;
   path: string;
   tags: string[];
-  cover: any;
+  cover: {
+    childImageSharp: {
+      fluid: FluidObject | FluidObject[];
+    };
+  };
   title: string;
   date: Date;
   excerpt: string;
@@ -22,16 +28,26 @@ export interface PostType {
 
 export const PostWrapper = styled.article<{ first: boolean }>`
   display: flex;
-  flex-direction: ${(props) => (props.first ? 'row' : 'column')};
   position: relative;
+  flex-direction: column;
   background: rgb(240, 240, 240);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  min-height: ${(props) => (props.first ? '270px' : '300px')};
-  width: ${(props) => (props.first ? '960px' : '300px')};
+  min-height: 300px;
+  width: 100%;
   margin: 10px;
   border-radius: 5px;
   padding: 0.5rem;
   transition: transform 0.2s ease-in-out;
+
+  ${media['md']} {
+    width: 300px;
+  }
+
+  ${media['lg']} {
+    flex-direction: ${(props) => (props.first ? 'row' : 'column')};
+    min-height: ${(props) => (props.first ? '270px' : '300px')};
+    width: ${(props) => (props.first ? '960px' : '300px')};
+  }
 
   &:hover {
     transform: scale(1.01);
@@ -39,14 +55,24 @@ export const PostWrapper = styled.article<{ first: boolean }>`
 `;
 
 const PostCover = styled.div<{ first: boolean }>`
-  min-width: ${(props) => (props.first ? '60%' : '100%')};
-  min-height: ${(props) => (props.first ? '100%' : '200px')};
+  min-width: 100%;
+  min-height: 200px;
+
+  ${media['lg']} {
+    min-width: ${(props) => (props.first ? '60%' : '100%')};
+    min-height: ${(props) => (props.first ? '100%' : '200px')};
+  }
 `;
 
 const PostContent = styled.section<{ first: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: ${(props) => (props.first ? '0 1rem 3rem 1rem' : '0.5rem 0 3rem 0')};
+  padding: 0.5rem 0 3rem 0;
+
+  ${media['lg']} {
+    padding: ${(props) =>
+      props.first ? '0 1rem 3rem 1rem' : '0.5rem 0 3rem 0'};
+  }
 `;
 
 const PostInfo = styled.div`
@@ -56,9 +82,13 @@ const PostInfo = styled.div`
 `;
 
 const Title = styled.h2<{ first: boolean }>`
-  ${(props) => (props.first ? '' : 'font-size: 1.4rem;')}
+  font-size: 1.4rem;
   padding: 1rem 0;
   font-weight: bold;
+
+  ${media['lg']} {
+    ${(props) => (props.first ? '' : 'font-size: 1.4rem;')}
+  }
 `;
 const Excerpt = styled.p`
   letter-spacing: -0.003em;
