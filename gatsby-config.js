@@ -187,5 +187,11 @@ module.exports = {
         allExtensions: true,
       },
     },
+    // {
+    //   resolve: 'gatsby-plugin-graphql-codegen',
+    //   options: {
+    //     fileName: 'src/graphql-type.ts',
+    //   },
+    // },
   ],
 };
