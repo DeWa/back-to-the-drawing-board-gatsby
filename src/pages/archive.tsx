@@ -29,31 +29,3 @@ const ArchivePage: FunctionComponent = () => {
 };
 
 export default ArchivePage;
-
-/* eslint no-undef: "off" */
-export const pageQuery = graphql`
-  query ArchiveQuery {
-    allMarkdownRemark(
-      sort: { fields: [fields___date], order: DESC }
-      filter: { fields: { collection: { eq: "notes" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            date
-          }
-          id
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            date
-            category
-            sources
-          }
-        }
-      }
-    }
-  }
-`;
