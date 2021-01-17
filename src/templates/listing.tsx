@@ -115,7 +115,7 @@ const IndexPage: FunctionComponent<Props> = (props) => {
           <Helmet title={config.siteTitle} />
           <SEO />
           <PostListing postEdges={postEdges} />
-          <Paging pageContext={props.pageContext} />
+          {postEdges.length > 7 && <Paging pageContext={props.pageContext} />}
         </div>
       </div>
     </MainLayout>
