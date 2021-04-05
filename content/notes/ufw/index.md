@@ -3,7 +3,6 @@ title: 'UFW Basics'
 date: '2020-01-08'
 category: 'Linux'
 sources:
-  - ''
 ---
 
 ### Install UFW
