@@ -3,6 +3,8 @@ import { Global, css } from '@emotion/core';
 import dayjs from 'dayjs';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
 
+import media from './src/helpers/media';
+
 // PrismJS theme
 require('prismjs/themes/prism-tomorrow.css');
 require('prismjs/plugins/command-line/prism-command-line.css');
@@ -114,10 +116,6 @@ const globalStyle = css`
   }
   body {
     line-height: 1;
-  }
-  ol,
-  ul {
-    list-style: none;
   }
   blockquote,
   q {
@@ -237,6 +235,14 @@ const globalStyle = css`
   body {
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    font-size: 16px;
+
+    ${media['uhd']} {
+      font-size: 20px;
+    }
   }
 
   body {
