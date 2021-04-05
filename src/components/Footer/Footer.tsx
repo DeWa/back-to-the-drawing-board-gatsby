@@ -25,6 +25,11 @@ const FooterWrapper = styled.footer`
   ${media['lg']} {
     flex-direction: row;
   }
+
+  & ol,
+  ul {
+    list-style: none;
+  }
 `;
 
 const PageLinks = styled.div`

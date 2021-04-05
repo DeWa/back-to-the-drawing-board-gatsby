@@ -12,6 +12,8 @@ export interface IProps {
 
 const Links = styled.ul`
   display: none;
+  list-style: none;
+
   ${media['md']} {
     display: flex;
   }
